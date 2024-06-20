@@ -1,0 +1,26 @@
+/* pages.css */
+
+.header {
+    list-style-type: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.header li {
+    margin: 0 1rem;
+}
+
+.header a {
+    text-decoration: none;
+    color: teal;
+    font-size: 1.2rem;
+    transition: color 0.3s ease;
+}
+
+.header a:hover {
+    padding: 5px; 
+    background-color: silver;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease,  
+}

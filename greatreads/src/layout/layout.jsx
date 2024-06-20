@@ -1,11 +1,12 @@
 import {Outlet, Link} from 'react-router-dom'
+import '../pages.css';
 
 export function Layout() {
     return(
         <>
         <header>
             <nav>
-                <ul>
+                <ul className='header'>
                     <li>
                         <Link to="/">Home</Link>
                     </li>
