@@ -1,4 +1,4 @@
-import './App.css';
+//import './App.css';
 import {BrowserRouter, Routes, Route} from 'react-router-dom';
 import {Home} from './pages/home';
 import {About} from './pages/about';
@@ -10,7 +10,7 @@ import {Delete} from './pages/delete';
 
 function App() {
   return (
-    <div className="App">
+    //<div className="App">
       <BrowserRouter>
         <Routes>
           <Route path = "/" element={<Layout />}>
@@ -25,7 +25,7 @@ function App() {
         </BrowserRouter>
         
       
-    </div>
+    //</div>
   );
 }
 
