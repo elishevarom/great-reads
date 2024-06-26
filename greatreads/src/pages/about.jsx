@@ -40,7 +40,7 @@ export function About() {
                   <Card>
                     <Card.Body>
                       <Card.Title className="h6 mb-0 text-center">Leora Samuels</Card.Title>
-                      <Card.Text className="text-muted text-center">Co-founder & CEO</Card.Text>
+                      <Card.Text className="text-muted text-center">Co-founder & CFO</Card.Text>
                     </Card.Body>
                   </Card>
                 </Col>
@@ -48,7 +48,7 @@ export function About() {
                   <Card>
                     <Card.Body>
                       <Card.Title className="h6 mb-0 text-center">Miriam Wetstein</Card.Title>
-                      <Card.Text className="text-muted text-center">Co-founder & CEO</Card.Text>
+                      <Card.Text className="text-muted text-center">Co-founder & COO</Card.Text>
                     </Card.Body>
                   </Card>
                 </Col>
