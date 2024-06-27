@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 //import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { Container, Dropdown, DropdownButton } from 'react-bootstrap';
+import { Container, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
 
 export function Retrieve() {
     const books = [
@@ -80,17 +80,27 @@ export function Retrieve() {
 
     return (
         <Container>
-            <DropdownButton id="dropdown-basic-button" title="Select a Book">
-                {books.map(book => (
-                    <Dropdown.Item 
-                        key={book.id} 
-                        onClick={() => handleSelect(book.id)}
-                    >
-                        {book.title}
-                    </Dropdown.Item>
-                ))}
-            </DropdownButton>
-
+            <div className="text-center mb-5">
+                <h2 className="display-4 font-weight-bold">Discover Our Books</h2>
+                <p className="lead">Select one of our books to view detailed information and read the latest reviews</p>
+            </div>
+            <div className="d-flex justify-content-center mb-4">
+                <Dropdown as={ButtonGroup}>
+                    <Dropdown.Toggle variant="outline-dark" size="lg" id="dropdown-custom-1">
+                        Select a Book
+                    </Dropdown.Toggle>
+                    <Dropdown.Menu>
+                    {books.map(book => (
+                            <Dropdown.Item 
+                                key={book.id} 
+                                onClick={() => handleSelect(book.id)}
+                            >
+                                {book.title}
+                            </Dropdown.Item>
+                        ))}
+                    </Dropdown.Menu>
+                </Dropdown>
+            </div>
             {selectedBook && (
                 <div className="mt-4">
                     <h3>{selectedBook.title}</h3>
@@ -112,36 +122,4 @@ export function Retrieve() {
             )}
         </Container>
     );
-
-    // return (
-    //     <Container>
-    //         <DropdownButton id="dropdown-basic-button" title="Select a Book">
-    //             {books.map(book => (
-    //                 <Dropdown.Item 
-    //                     key={book.id} 
-    //                     onClick={() => handleSelect(book.id)}
-    //                 >
-    //                     {book.title}
-    //                 </Dropdown.Item>
-    //             ))}
-    //         </DropdownButton>
-
-    //         {selectedBook && (
-    //             <div className="mt-4">
-    //                 <h3>{selectedBook.title}</h3>
-    //                 <p><strong>Author:</strong> {selectedBook.author}</p>
-    //                 <p><strong>Average Rating:</strong> {selectedBook.averageRating} / 5</p>
-    //                 <h5>Reviews:</h5>
-    //                 <ul>
-    //                     {selectedBook.reviews.map((review, index) => (
-    //                         <li key={index}>
-    //                             <strong>{review.reviewer}:</strong> {review.comment}
-    //                             <div>Rating: {review.rating} / 5</div>
-    //                         </li>
-    //                     ))}
-    //                 </ul>
-    //             </div>
-    //         )}
-    //     </Container>
-    // );
 }
