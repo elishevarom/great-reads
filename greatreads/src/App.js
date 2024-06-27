@@ -7,6 +7,8 @@ import {Add} from './pages/add';
 import {Update} from './pages/update';
 import {Retrieve} from './pages/retrieve';
 import {Delete} from './pages/delete';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 function App() {
   return (
