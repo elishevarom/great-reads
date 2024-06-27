@@ -68,7 +68,7 @@ export function Update() {
         <Container className="py-5">
             <Row>
                 <Col md={8} className="mb-4">
-                    <h1 className="text-center mb-4">Update Book Reviews</h1>
+                    <h1 className="text-center mb-4">Add a Book Review</h1>
                     <div className="d-flex mb-3">
                         <Form.Control
                             type="text"
@@ -77,7 +77,7 @@ export function Update() {
                             onChange={event => setBookName(event.target.value)}
                             className="me-3"
                         />
-                        <Button variant="secondary" onClick={retrieveBookInfo}>Retrieve Book</Button>
+                        <Button variant="secondary" onClick={retrieveBookInfo}>Choose Book</Button>
                     </div>
                     {bookInfo && (
                         <Row className="mt-4">
