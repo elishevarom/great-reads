@@ -4,7 +4,7 @@ export function About() {
     return(
         <Container className="my-5">
         <Row className="justify-content-center">
-            <Col md={8}>
+            <Col md={10}>
             <Card>
                 <Card.Header as="h5" className="text-center">About Us</Card.Header>
                 <Card.Body>
@@ -28,7 +28,15 @@ export function About() {
                 Meet the founders and CEOs who lead Great Reads:
               </Card.Text>
               <Row>
-                <Col md={4}>
+              <Col md={3}>
+                  <Card>
+                    <Card.Body>
+                      <Card.Title className="h6 mb-0 text-center">Zack O'Connell</Card.Title>
+                      <Card.Text className="text-muted text-center">Co-founder & CFO</Card.Text>
+                    </Card.Body>
+                  </Card>
+                </Col>
+                <Col md={3}>
                   <Card>
                     <Card.Body>
                       <Card.Title className="h6 mb-0 text-center">Menucha Rooshanshad</Card.Title>
@@ -36,15 +44,15 @@ export function About() {
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                   <Card>
                     <Card.Body>
                       <Card.Title className="h6 mb-0 text-center">Leora Samuels</Card.Title>
-                      <Card.Text className="text-muted text-center">Co-founder & CFO</Card.Text>
+                      <Card.Text className="text-muted text-center">Co-founder & CIO</Card.Text>
                     </Card.Body>
                   </Card>
                 </Col>
-                <Col md={4}>
+                <Col md={3}>
                   <Card>
                     <Card.Body>
                       <Card.Title className="h6 mb-0 text-center">Miriam Wetstein</Card.Title>
