@@ -26,9 +26,9 @@ export function Home() {
             <section className="row container text-center py-5">
                 <div className="col-md-4 mb-4">
                     <div className="card h-100">
-                        <img src="book4.jpg" className="card-img-top" alt="See Top Rated Books"/>
+                        <img src="book4.jpg" className="card-img-top" alt="Contribute By Adding Your Favorite Books"/>
                         <div className="card-body">
-                            <h2 className="card-title">See Top Rated Books</h2>
+                            <h2 className="card-title">Contribute By Adding Your Favorite Books</h2>
                         </div>
                     </div>
                 </div>
