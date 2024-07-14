@@ -6,37 +6,33 @@ import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 
-const initialBookInfo = {
-    "Harry Potter": {
-        title: "Harry Potter",
-        author: "JK Rowling",
-        genre: "Fiction",
-        ageRange: "12-15",
-        rating: 4,
-        reviews: []
-    },
-    "Lord of the Rings": {
-        title: "Lord of the Rings",
-        author: "J.R.R. Tolkien",
-        genre: "Fantasy",
-        ageRange: "12-15",
-        rating: 5,
-        reviews: []
-    }
-};
+const API_RETRIEVE_URL = 'https://du4e4w01n2.execute-api.us-east-1.amazonaws.com/default/retrieveGreatreadsBook';
+const API_UPDATE_URL = 'https://du4e4w01n2.execute-api.us-east-1.amazonaws.com/default/updateGreatreadsBook';
 
 export function Update() {
     const [bookName, setBookName] = useState("");
     const [bookInfo, setBookInfo] = useState(null);
+    const [reviewer, setReviewer] = useState("");
+    const [reviewTitle, setReviewTitle] = useState("");
+    const [newReview, setNewReview] = useState("");
 
     function retrieveBookInfo() {
-        const selectedBook = initialBookInfo[bookName];
-        if (selectedBook) {
-            setBookInfo(selectedBook);
-        } else {
-            setBookInfo(null);
-            alert("Book not found!");
-        }
+        fetch(`${API_RETRIEVE_URL}?bookName=${bookName}`)
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Book not found!");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setBookInfo(data);
+            })
+            .catch(error => {
+                console.error("Error retrieving book info:", error);
+                setBookInfo(null);
+                alert(error.message);
+            });
+            console.log(bookInfo)
     }
 
     function addReview() {
@@ -49,20 +45,31 @@ export function Update() {
                 text: newReview,
                 date: formattedDate
             };
-            const updatedReviews = [...bookInfo.reviews, newReviewObj];
-            const updatedBookInfo = { ...bookInfo, reviews: updatedReviews };
-            setBookInfo(updatedBookInfo);
-            setReviewTitle('');
-            setReviewer('');
-            setNewReview('');
+            console.log(newReviewObj)
+            fetch(`${API_UPDATE_URL}?bookName=${bookName}`, {
+                method: 'POST',
+                body: JSON.stringify(newReviewObj)
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error("Error adding review. Please try again.");
+                }
+                return response.json();
+            })
+            .then(data => {
+                setBookInfo(data);
+                setReviewTitle('');
+                setReviewer('');
+                setNewReview('');
+            })
+            .catch(error => {
+                console.error("Error adding review:", error);
+                alert(error.message);
+            });
         } else {
-            alert("Please fill in all fields: Reviewer, Review Title, Age Range, and Review Text");
+            alert("Please fill in all fields: Reviewer, Review Title, and Review Text");
         }
     }
-
-    const [reviewer, setReviewer] = useState("");
-    const [reviewTitle, setReviewTitle] = useState("");
-    const [newReview, setNewReview] = useState("");
 
     return (
         <Container className="py-5">
@@ -88,7 +95,6 @@ export function Update() {
                                         <Card.Text><strong>Author:</strong> {bookInfo.author}</Card.Text>
                                         <Card.Text><strong>Genre:</strong> {bookInfo.genre}</Card.Text>
                                         <Card.Text><strong>Age Range:</strong> {bookInfo.ageRange}</Card.Text>
-
                                         <Card.Text><strong>Rating:</strong> {bookInfo.rating}</Card.Text>
                                     </Card.Body>
                                 </Card>
