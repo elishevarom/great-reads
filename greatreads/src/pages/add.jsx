@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
+import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 export function Add() {
@@ -11,22 +11,45 @@ export function Add() {
         ageRange: "",
         genre: ""
     });
+    const [responseMessage, setResponseMessage] = useState({});
 
-    function addBookToList() {
+    const lambdaEndpoint = "https://du4e4w01n2.execute-api.us-east-1.amazonaws.com/default/addGreatReadsBook";
+
+    async function addBookToList() {
+        setResponseMessage({});
         if (newBook.title && newBook.author && newBook.rating && newBook.ageRange && newBook.genre) {
             const bookWithReviews = {
                 ...newBook,
+                pk: newBook.title, // Use title as primary key or any unique identifier
                 reviews: [] // Empty array for reviews
             };
-            setBooks([...books, bookWithReviews]);
-            setNewBook({
-                title: "",
-                author: "",
-                rating: "",
-                ageRange: "",
-                genre: ""
-            });
-            console.log('Added book:', bookWithReviews);
+
+            const params = {
+                method: 'POST',
+                body: JSON.stringify(bookWithReviews),
+            };
+
+            fetch(lambdaEndpoint, params)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+                    return response.json();
+                })
+                .then(_ => {
+                    setResponseMessage({ variant: 'success', message: `${newBook.title} was created successfully` });
+                    setBooks([...books, bookWithReviews]);
+                    setNewBook({
+                        title: "",
+                        author: "",
+                        rating: "",
+                        ageRange: "",
+                        genre: ""
+                    });
+                })
+                .catch(_ => {
+                    setResponseMessage({ variant: 'danger', message: `Error in creating ${newBook.title}` });
+                });
         } else {
             alert('Please fill out all fields before adding the book.');
         }
@@ -119,6 +142,13 @@ export function Add() {
                                 </Card.Text>
                             </Card.Body>
                         </Card>
+                    </Col>
+                </Row>
+            )}
+            {responseMessage.message && (
+                <Row className="justify-content-center mt-5">
+                    <Col md={6}>
+                        <Alert variant={responseMessage.variant}>{responseMessage.message}</Alert>
                     </Col>
                 </Row>
             )}
