@@ -1,83 +1,52 @@
-import React, { useState } from 'react';
-//import { Container, Row, Col, Form, Button, Card } from 'react-bootstrap';
-import { Container, Dropdown, DropdownButton, ButtonGroup } from 'react-bootstrap';
+import React, { useState, useEffect } from 'react';
+import { Container, Dropdown, ButtonGroup } from 'react-bootstrap';
 
 export function Retrieve() {
-    const books = [
-        {
-            id: 1,
-            title: 'Curious George',
-            author: 'H. A. Rey',
-            rating: 3,
-            ageRange: "4-7",
-            genre: "Children's Literature",
-            reviews: [
-                {   title: "Great book!",
-                    reviewer: "Sally A.",
-                    text: "Interesting and my kids just love it",
-                    date: "June 13, 2024",
-                },
-                { title: "Pretty good",
-                    reviewer: "Andrew Jackson",
-                    text: "Interesting and my kids just love it",
-                    date: "May 3, 2023",
-                },
-            ],
-        },
-        {
-            id: 2,
-            title: 'Cam Jansen',
-            author: 'David A. Adler',
-            rating: 4,
-            ageRange: "7-11",
-            genre: "Mystery",
-            reviews: [
-                {   title: "Interesting!",
-                    reviewer: "L. Sanders",
-                    text: "So intriguing and was a huge hit for my kids!",
-                    date: "June 13, 2024"
-                },
-                { title: "Not bad",
-                    reviewer: "R",
-                    text: "Interesting and my kids just love it",
-                    date: "May 9, 2023",
-                },
-                // { reviewer: 'Reviewer C', comment: 'Not bad.', rating: 3 },
-                // { reviewer: 'Reviewer D', comment: 'Enjoyed it.', rating: 4 },
-            ],
-        },
-        {
-            id: 3,
-            title: 'The Little Engine That Could',
-            author: 'Watty Piper',
-            rating: 5,
-            ageRange: "3-7",
-            genre: "Children's Literature",
-            reviews: [
-                {   title: "Not my style",
-                    reviewer: "Lobsters",
-                    text: "ehhh",
-                    date: "a rainy day",
-                },
-                { title: "Not bad",
-                    reviewer: "menucha",
-                    text: "pretty great",
-                    date: "one day",
-                },
-                // { reviewer: 'Reviewer E', comment: 'Fantastic read!', rating: 5 },
-                // { reviewer: 'Reviewer F', comment: 'Loved it.', rating: 4 },
-            ],
-        },
-    ];
-
+    const [books, setBooks] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const [selectedBook, setSelectedBook] = useState(null);
 
-    const handleSelect = (bookId) => {
-        const book = books.find(b => b.id === bookId);
-        setSelectedBook(book);
+
+        //fetching all books to display titles in dropdown
+        useEffect(() => {
+          const fetchAllBooks = async () => {
+            try { 
+              const response = await fetch('https://du4e4w01n2.execute-api.us-east-1.amazonaws.com/default/getAllBooks');
+              if (!response.ok) {
+                throw new Error('Network response was not ok');
+              }
+              const result = await response.json();
+              setBooks(result);
+            } 
+            catch (error) {
+              setError(error);
+            } 
+            finally {
+                setLoading(false);
+            }
+          };
+          fetchAllBooks();
+        }, []);
+     
+    //fetching data of the requested book    
+    const handleSelect = async (pk) => {
+        try { 
+            const response = await fetch(`https://du4e4w01n2.execute-api.us-east-1.amazonaws.com/default/retrieveGreatreadsBook?bookName=${pk}`)
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const result = await response.json();
+            setSelectedBook(result);
+        } 
+        catch (error) {
+        setError(error);
+        } 
+        finally {
+            setLoading(false);
+        }
     };
-
-
+    
     return (
         <Container>
             <div className="text-center mb-5">
@@ -92,10 +61,10 @@ export function Retrieve() {
                     <Dropdown.Menu>
                     {books.map(book => (
                             <Dropdown.Item 
-                                key={book.id} 
-                                onClick={() => handleSelect(book.id)}
-                            >
-                                {book.title}
+                                key={book.pk} 
+                                onClick={() => handleSelect(book.pk)}
+                            >   
+                                {book.pk}
                             </Dropdown.Item>
                         ))}
                     </Dropdown.Menu>
@@ -103,7 +72,7 @@ export function Retrieve() {
             </div>
             {selectedBook && (
                 <div className="mt-4">
-                    <h3>{selectedBook.title}</h3>
+                    <h3>{selectedBook.pk}</h3>
                     <p><strong>Author:</strong> {selectedBook.author}</p>
                     <p><strong>Rating:</strong> {selectedBook.rating} / 5</p>
                     <p><strong>Age Range:</strong> {selectedBook.ageRange}</p>
