@@ -21,6 +21,7 @@ export function Layout() {
                 <Nav.Link as={Link} to="/update" className="text-light">Update</Nav.Link>
                 <Nav.Link as={Link} to="/retrieve" className="text-light">Retrieve</Nav.Link>
                 <Nav.Link as={Link} to="/delete" className="text-light">Delete</Nav.Link>
+                <Nav.Link as={Link} to="/reviewsDashboard" className="text-light">Reviews Dashboard</Nav.Link> {/* Add this line */}
                 <NavDropdown title="More" id="basic-nav-dropdown" className="text-light">
                   <NavDropdown.Item href="#">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#">Another action</NavDropdown.Item>
