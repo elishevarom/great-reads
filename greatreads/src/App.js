@@ -9,8 +9,13 @@ import {Retrieve} from './pages/retrieve';
 import {Delete} from './pages/delete';
 import ReviewsDashboard from './pages/reviewsDashboard';
 import 'bootstrap/dist/css/bootstrap.min.css';
+//import "./App.css";
+import StripePayment from "./StripePayment";
+import Pay from "./Course";
+import PaymentSuccess from "./PaymentSuccess";
+ 
 
-
+ 
 function App() {
   return (
     //<div className="App">
@@ -22,6 +27,9 @@ function App() {
           <Route path = "add" element = {<Add />} />
           <Route path = "update" element = {<Update />} />
           <Route path = "retrieve" element = {<Retrieve />} />
+         //<Route path="pay" element={<Pay />} />
+          <Route path="payment" element={<StripePayment />} />
+          <Route path="success" element={<PaymentSuccess />} />
           <Route path = "delete" element = {<Delete />} />
           <Route path="reviewsDashboard" element={< ReviewsDashboard />} /> {/* Add this line */}
           </Route>

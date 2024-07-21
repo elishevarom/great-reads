@@ -20,6 +20,7 @@ export function Layout() {
                 <Nav.Link as={Link} to="/add" className="text-light">Add</Nav.Link>
                 <Nav.Link as={Link} to="/update" className="text-light">Update</Nav.Link>
                 <Nav.Link as={Link} to="/retrieve" className="text-light">Retrieve</Nav.Link>
+                <Nav.Link as={Link} to="/pay" className="text-light">Membership</Nav.Link>
                 <Nav.Link as={Link} to="/delete" className="text-light">Delete</Nav.Link>
                 <Nav.Link as={Link} to="/reviewsDashboard" className="text-light">Reviews Dashboard</Nav.Link> {/* Add this line */}
                 <NavDropdown title="More" id="basic-nav-dropdown" className="text-light">
@@ -29,6 +30,7 @@ export function Layout() {
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#">Separated link</NavDropdown.Item>
                 </NavDropdown>
+                
               </Nav>
             </Navbar.Collapse>
           </Container>
