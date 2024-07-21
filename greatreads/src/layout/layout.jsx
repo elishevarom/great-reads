@@ -21,6 +21,8 @@ export function Layout() {
                 <Nav.Link as={Link} to="/update" className="text-light">Update</Nav.Link>
                 <Nav.Link as={Link} to="/retrieve" className="text-light">Retrieve</Nav.Link>
                 <Nav.Link as={Link} to="/pay" className="text-light">Membership</Nav.Link>
+                <Nav.Link as={Link} to="/reviewsDashboard" className="text-light">Reviews Dashboard</Nav.Link> {/* Add this line */}
+
                 
               </Nav>
             </Navbar.Collapse>

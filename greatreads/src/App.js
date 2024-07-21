@@ -29,6 +29,8 @@ function App() {
          //<Route path="pay" element={<Pay />} />
           <Route path="payment" element={<StripePayment />} />
           <Route path="success" element={<PaymentSuccess />} />
+          <Route path="reviewsDashboard" element={< ReviewsDashboard />} /> {/* Add this line */}
+
           </Route>
         </Routes>
         </BrowserRouter>
