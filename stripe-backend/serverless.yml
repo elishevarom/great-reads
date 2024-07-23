@@ -1,0 +1,33 @@
+# "org" ensures this Service is used with the correct Serverless Framework Access Key.
+org: miriamwetstein
+# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
+app: serverlessforstripe
+service: my-node-app
+provider:
+  name: aws
+  runtime: nodejs20.x
+  
+  stage: dev
+  region: us-east-1
+  environment:
+    STRIPE_SECRET_KEY: ${env:STRIPE_SECRET_KEY}
+plugins:
+    - serverless-dotenv-plugin
+
+
+functions:
+  app:
+    handler: index.handler
+    events:
+      - http:
+          path: /
+          method: any
+      - http:
+          path: '{proxy+}'
+          method: any
+package:
+  exclude:
+    - node_modules/**
+    - .gitignore
+    - .git/**
+
