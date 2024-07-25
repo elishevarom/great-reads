@@ -1,12 +1,13 @@
 # "org" ensures this Service is used with the correct Serverless Framework Access Key.
-org: miriamwetstein
+# org: miriamwetstein
 # "app" enables Serverless Framework Dashboard features and sharing them with other Services.
 app: serverlessforstripe
 service: my-node-app
 provider:
   name: aws
   runtime: nodejs20.x
-  
+  deploymentBucket:
+    name: stripe-deployment
   stage: dev
   region: us-east-1
   environment:
