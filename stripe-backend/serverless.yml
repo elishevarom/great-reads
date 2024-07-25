@@ -1,6 +1,3 @@
-# "org" ensures this Service is used with the correct Serverless Framework Access Key.
-# org: miriamwetstein
-# "app" enables Serverless Framework Dashboard features and sharing them with other Services.
 app: serverlessforstripe
 service: my-node-app
 
@@ -43,6 +40,5 @@ functions:
 
 package:
   exclude:
-    - node_modules/**
     - .gitignore
     - .git/**
