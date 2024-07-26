@@ -27,13 +27,13 @@ export function Layout() {
                 <Nav.Link as={Link} to="/pay" className="text-light">Membership</Nav.Link> */}
                 <Nav.Link as={Link} to="/delete" className="text-light">Delete</Nav.Link>
                 <Nav.Link as={Link} to="/reviewsDashboard" className="text-light">Reviews Dashboard</Nav.Link> {/* Add this line */}
-                {/* <NavDropdown title="More" id="basic-nav-dropdown" className="text-light">
+                <NavDropdown title="More" id="basic-nav-dropdown" className="text-light">
                   <NavDropdown.Item href="#">Action</NavDropdown.Item>
                   <NavDropdown.Item href="#">Another action</NavDropdown.Item>
                   <NavDropdown.Item href="#">Something else here</NavDropdown.Item>
                   <NavDropdown.Divider />
                   <NavDropdown.Item href="#">Separated link</NavDropdown.Item>
-                </NavDropdown> */}
+                </NavDropdown> 
               </Nav>
             </Navbar.Collapse>
           </Container>
