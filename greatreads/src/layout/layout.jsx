@@ -21,9 +21,9 @@ export function Layout() {
                 <Nav.Link as={Link} to="/addReview" className="text-light">Add Your Review</Nav.Link>
                 <Nav.Link as={Link} to="/findBook" className="text-light">Find a Book</Nav.Link>
                 <Nav.Link as={Link} to="/about" className="text-light">About</Nav.Link>
-                {/* <Nav.Link as={Link} to="/add" className="text-light">Add</Nav.Link>
+                <Nav.Link as={Link} to="/add" className="text-light">Add</Nav.Link>
                 <Nav.Link as={Link} to="/update" className="text-light">Update</Nav.Link> 
-                <Nav.Link as={Link} to="/retrieve" className="text-light">Retrieve</Nav.Link>  */}
+                <Nav.Link as={Link} to="/retrieve" className="text-light">Retrieve</Nav.Link> 
                 <Nav.Link as={Link} to="/pay" className="text-light">Membership</Nav.Link> 
                 <Nav.Link as={Link} to="/delete" className="text-light">Delete</Nav.Link>
                 <Nav.Link as={Link} to="/reviewsDashboard" className="text-light">Reviews Dashboard</Nav.Link> {/* Add this line */}
