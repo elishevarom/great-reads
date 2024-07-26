@@ -23,9 +23,9 @@ function App() {
           <Route path = "findBook" element = {<Retrieve />} />
           {/* <Route path = "add" element = {<Add />} />
           <Route path = "update" element = {<Update />} />
-          <Route path = "retrieve" element = {<Retrieve />} />
-         //<Route path="pay" element={<Pay />} />
-          <Route path="payment" element={<StripePayment />} /> */}
+          <Route path = "retrieve" element = {<Retrieve />} /> */}
+          <Route path="pay" element={<Pay />} />
+          <Route path="payment" element={<StripePayment />} />
           <Route path="success" element={<PaymentSuccess />} /> 
           <Route path = "delete" element = {<Delete />} />
           </Route>
