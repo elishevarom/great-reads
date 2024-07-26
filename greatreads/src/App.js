@@ -25,8 +25,8 @@ function App() {
           <Route path = "update" element = {<Update />} />
           <Route path = "retrieve" element = {<Retrieve />} />
          //<Route path="pay" element={<Pay />} />
-          <Route path="payment" element={<StripePayment />} />
-          <Route path="success" element={<PaymentSuccess />} /> */}
+          <Route path="payment" element={<StripePayment />} /> */}
+          <Route path="success" element={<PaymentSuccess />} /> 
           <Route path = "delete" element = {<Delete />} />
           </Route>
         </Routes>
