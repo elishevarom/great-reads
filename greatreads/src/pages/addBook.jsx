@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Container, Row, Col, Form, Button, Card, Alert } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import {Helmet} from 'react-helmet';
 
 export function Add() {
     const [books, setBooks] = useState([]);
@@ -62,6 +63,14 @@ export function Add() {
 
     return (
         <Container className="mt-5">
+             <div>
+                <Helmet>
+                    <title>Great Reads - Add a Book</title>
+                    <meta name="keywords" content="children's books, storybook, storytime, book reviews, good stories, kids book, free access, stories, story, book review, reviews, write review" />
+                    <meta property="og:title" content="Great Reads-Add a Book"/>
+                    <meta property="og:description" content="Add your favorite books to the database and share your love of reading and getting lost in a story to the whole world." />
+                </Helmet>
+            </div>
             <Row className="mb-4">
                 <Col>
                     <h1 className="text-center text-primary">Add a Book</h1>
