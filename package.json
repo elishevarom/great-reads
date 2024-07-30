@@ -1,6 +1,14 @@
 {
   "dependencies": {
+    "@stripe/react-stripe-js": "^2.7.3",
+    "@stripe/stripe-js": "^4.1.0",
+    "d3": "^7.9.0",
+    "daisyui": "^4.12.10",
     "react-helmet": "^6.1.0",
-    "react-responsive-carousel": "^3.2.23"
+    "react-responsive-carousel": "^3.2.23",
+    "stripe": "^16.5.0"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.7"
   }
 }
