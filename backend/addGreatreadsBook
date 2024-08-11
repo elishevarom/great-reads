@@ -1,0 +1,33 @@
+const AWS = require('aws-sdk');
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+exports.handler = async (event) => {
+    console.log(event.body)
+    const { pk, ageRange, author, genre, rating } = JSON.parse(event.body);
+
+    const params = {
+        TableName: 'great_reads', 
+        Item: {
+            'pk': pk, // Book title or unique identifier
+            'ageRange': ageRange,
+            'author': author,
+            'genre': genre,
+            'rating': rating,
+            'reviews': [], // Initialize reviews as an empty array
+        }
+    };
+
+    try {
+        await dynamodb.put(params).promise();
+        return {
+            statusCode: 200,
+            body: JSON.stringify('Item created successfully'),
+        };
+    } catch (err) {
+        console.error('Error creating item in DynamoDB', err);
+        return {
+            statusCode: 500,
+            body: JSON.stringify('Error creating item in DynamoDB'),
+        };
+    }
+};

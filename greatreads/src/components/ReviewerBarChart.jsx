@@ -6,8 +6,6 @@ const ReviewerBarChart = ({ data }) => {
     const svg = d3.select('#reviewer-bar-chart');
     svg.selectAll('*').remove(); // Clear previous chart
 
-    // Debug: Log the incoming data
-    console.log('Raw data passed to ReviewerBarChart:', data);
 
     // Process data for the bar chart
     const processedData = data.reduce((acc, review) => {
@@ -38,8 +36,6 @@ const ReviewerBarChart = ({ data }) => {
       return bookData;
     });
 
-    // Debug: Log the final data to be used in the chart
-    console.log('Final chart data:', chartData);
 
     // Set chart dimensions
     const width = 800;

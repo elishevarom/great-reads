@@ -42,9 +42,6 @@ const ReviewsDashboard = () => {
     bookRating: book.rating,
   })));
 
-  // Log the reviews to debug
-  console.log('Reviews Data:', reviews);
-
   // Preparing genre data
   const genreData = books.reduce((acc, book) => {
     const genre = book.genre;
@@ -64,7 +61,7 @@ const ReviewsDashboard = () => {
       </div>
       <Row>
         <Col md={6}>
-          <h3>Ratings by Reviewer</h3>
+          <h3>Ratings by Book Title</h3>
           <RatingBarChart data={books} />
         </Col>
         <Col md={6}>
