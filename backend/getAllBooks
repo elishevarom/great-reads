@@ -1,0 +1,28 @@
+const AWS = require('aws-sdk');
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+exports.handler = async (event) => {
+    const params = {
+        TableName: 'great_reads'
+    };
+    
+    try {
+        const data = await dynamodb.scan(params).promise();
+        if (!data.Items || data.Items.length === 0) {
+            return {
+                statusCode: 404,
+                body: JSON.stringify('No items found'),
+            };
+        }
+        return {
+            statusCode: 200,
+            body: JSON.stringify(data.Items),
+        };
+    } catch (err) {
+        console.error('Error retrieving items from DynamoDB', err);
+        return {
+            statusCode: 500,
+            body: JSON.stringify('Error retrieving items from DynamoDB'),
+        };
+    }
+};
