@@ -1,0 +1,66 @@
+const AWS = require('aws-sdk');
+const dynamodb = new AWS.DynamoDB.DocumentClient();
+
+exports.handler = async (event) => {
+    const bookName = event.queryStringParameters.bookName;
+    const newReview = JSON.parse(event.body);
+
+    if (!bookName || !newReview) {
+        return {
+            statusCode: 400,
+            body: JSON.stringify('Book name and review are required')
+        };
+    }
+
+    let reviews = await getBookReviews(bookName);
+    reviews.push(newReview);
+    
+    const params = {
+        TableName: 'great_reads',
+        Key: {
+            'pk': bookName
+        },
+        UpdateExpression: 'set #reviews = :value',
+        ExpressionAttributeNames: {
+            '#reviews': 'reviews'
+        },
+        ExpressionAttributeValues: {
+            ':value': reviews
+        },
+        ReturnValues: 'UPDATED_NEW'
+    };
+    
+    try {
+        const data = await dynamodb.update(params).promise();
+        return {
+            statusCode: 200,
+            body: JSON.stringify(data.Attributes),
+        };
+    } catch (err) {
+        console.error('Error updating item in DynamoDB', err);
+        return {
+            statusCode: 500,
+            body: JSON.stringify('Error updating item in DynamoDB'),
+        };
+    }
+};
+
+async function getBookReviews(bookName) {
+    const params = {
+        TableName: 'great_reads',
+        Key: {
+            'pk': bookName
+        }
+    };
+    
+    try {
+        const data = await dynamodb.get(params).promise();
+        if (!data.Item) {
+            return [];
+        }
+        return data.Item.reviews;
+    } catch (err) {
+        console.error('Error retrieving item from DynamoDB', err);
+        throw new Error('Error retrieving item from DynamoDB');
+    }
+}
